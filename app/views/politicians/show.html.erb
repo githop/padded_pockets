@@ -1,7 +1,7 @@
 <%= @politician.name %>
 <ul>
 <% @comments.each do |comm| %>
-  <%= puts "------------------#{comm}" %>
-  <li><%= comm.content %></li>
+
+  <li><%= User.find_by_id(comm.user_id).username%><%= comm.content %></li>
 <% end %>
 </ul>
