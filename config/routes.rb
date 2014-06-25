@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :comments, only: :create
 
+  resources :politicians do
+    resources :comments, only: :create
+  end
   resources :sessions, only: [:new, :create]
   # You can have the root of your site routed with "root"
    root 'welcome#index'
