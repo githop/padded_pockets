@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.create(comment_params)
-    User.find_by_id(session[:user_id]).comments << @comment
   end
 
 
