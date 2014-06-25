@@ -1,9 +1,11 @@
 <%= @politician.name %>
 
-<%= render 'comments/form' %>
+<%= render 'shared/form'%>
 
 <ul>
-<% @comments.each do |comm| %>
-  <li><%= User.find_by_id(comm.user_id).username%><%= comm.content %></li>
+<% @politician.comments.each do |comm| %>
+  <% next unless comm.persisted?%>
+  <li><%= comm.user.username %>:<br><%= comm.content %></li>
 <% end %>
 </ul>
+

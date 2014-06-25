@@ -34,10 +34,10 @@ feature 'User browsing politician profile' do
     it "should create a comment" do
       visit politician_path(@poli)
 
-      fill_in "Comment", with: "here is our comment"
+      fill_in "comment_content", with: "here is our comment"
       click_button "Submit"
 
-      expect(page).to have_content("here is our comment")
+      expect(page).to have_content("here is all comment")
 
     end
 
