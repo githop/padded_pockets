@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:user][:password])
         session[:user_id] = @user.id
 
-        redirect_to root_path
+        redirect_to edit_user_path(@user)
       else
         flash[:error] = "Sign in failed"
         redirect_to new_session_path

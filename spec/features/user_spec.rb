@@ -20,7 +20,6 @@ feature "Create account" do
 
     it "user account is created" do
       visit new_user_path
-
       expect {
         fill_in "Username", with: "timbo"
         fill_in "Email", with: "test@example.com"
@@ -28,7 +27,7 @@ feature "Create account" do
         click_button "Sign up"
       }.to change(User, :count).by(1)
 
-      expect(page).to have_content "Balls"
+      expect(page).to have_content "Edit"
     end
 
     it "fails to create a user account" do

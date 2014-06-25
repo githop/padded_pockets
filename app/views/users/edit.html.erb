@@ -1,0 +1,15 @@
+<h1> Edit Account </h1>
+
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+
+  <%= form_for @user, method: :patch do |f| %>
+    <%= f.label :bio %><br>
+    <%= f.text_area :bio %><br>
+
+    <%=f.label :party %><br>
+    <%= f.text_field :party %><br>
+
+    <%= f.submit "Update Profile" %>
+  <% end %>
