@@ -1,1 +1,7 @@
 <%= @politician.name %>
+<ul>
+<% @comments.each do |comm| %>
+  <%= puts "------------------#{comm}" %>
+  <li><%= comm.content %></li>
+<% end %>
+</ul>
