@@ -1,7 +1,9 @@
 <%= @politician.name %>
+
+<%= render 'comments/form' %>
+
 <ul>
 <% @comments.each do |comm| %>
-
   <li><%= User.find_by_id(comm.user_id).username%><%= comm.content %></li>
 <% end %>
 </ul>
