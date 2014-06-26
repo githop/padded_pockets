@@ -4,7 +4,7 @@ feature 'User browsing politician profile' do
   before(:each) do
     @poli = Politician.create(name: "Myname", id: 1)
     @comment =Comment.create(content: "here is all of my content")
-    @user = User.create(username: "scott")
+    @user = User.create(username: "scott", email: "email@email.com", password: "password")
 
     @user.comments << @comment
     @poli.comments << @comment
@@ -32,12 +32,18 @@ feature 'User browsing politician profile' do
 
 
     it "should create a comment" do
+      visit new_session_path
+
+      fill_in "user_email", with: "email@email.com"
+      fill_in "user_password", with: "password"
+      click_button "Sign in"
+
       visit politician_path(@poli)
 
       fill_in "comment_content", with: "here is our comment"
       click_button "Submit"
 
-      expect(page).to have_content("here is all comment")
+      expect(page).to have_content("here is our comment")
 
     end
 

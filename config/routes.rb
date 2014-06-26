@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   resources :users
+  post 'politicians/:politician_id/comments/:id/upvote' => 'comments#upvote'
+  post 'politicians/:politician_id/comments/:id/downvote' => 'comments#downvote'
+  delete 'politicians/:politician_id/comments/:id/delete' => 'comments#destroy'
 
   resources :politicians do
     resources :comments, only: :create

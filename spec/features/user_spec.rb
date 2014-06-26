@@ -1,6 +1,5 @@
 require "rails_helper"
 
-
 feature "A User" do
 
   context "visits the sign up page" do
@@ -87,5 +86,7 @@ feature "A User" do
       }.to change(User, :count).by(-1)
 
     end
-    end
+  end
+
 end
+
