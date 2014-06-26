@@ -1,9 +1,8 @@
 require "rails_helper"
 
+feature "User" do
 
-feature "Create account" do
-
-  context "on sign up page" do
+  context "Vistis the signin page" do
     it "has a sign up form" do
       visit new_user_path
 
@@ -11,8 +10,6 @@ feature "Create account" do
       expect(page).to have_content "Email"
       expect(page).to have_content "Password"
       expect(page).to have_button "Create User"
-
-
      end
   end
 
@@ -38,4 +35,15 @@ feature "Create account" do
         expect(page).to have_content "there was an issue creating your account."
     end
   end
+
+  context "edits their account" do
+    it "updates their data" do
+      visit edit_user_path
+
+    end
+
+  end
+
+
 end
+
