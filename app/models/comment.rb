@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
-  has_many :votes
+  acts_as_votable
+
   belongs_to :user
   belongs_to :politician
 end
