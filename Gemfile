@@ -32,6 +32,8 @@ gem 'bcrypt', '~> 3.1.7'
 # simple cov
 gem 'simplecov', :require => false, :group => :test
 
+gem 'table_print'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
