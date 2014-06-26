@@ -3,4 +3,5 @@ rvm:
   - "2.0.0"
 # uncomment this line if your project needs to run something other than `rake`:
 script: bundle exec rspec spec
-- psql -c 'create database padded_pockets_test;' -U postgres
+before_script:
+  - psql -c 'create database padded_pockets_test;' -U postgres
