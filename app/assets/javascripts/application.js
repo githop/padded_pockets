@@ -14,15 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
+function voting(type,commentId) {
+  var politicianId = window.location.pathname.slice(-1);
+  var url = "/politicians/" + politicianId + "/comments/" + commentId + "/" + type;
+  $.post(url, {comment_id: commentId, politician_id: politicianId}, function(){});
+}
 
 $(document).ready(function(){
+  var commentId;
   $("img[alt='up_vote']").on('click', function(){
-    console.log("First bit");
-    var politicianId = window.location.pathname.slice(-1);
-    var commId = $('img').attr('value');
-    var url = "/politicians/" + politicianId + "/comments/" + commId + "/upvote"
-      $.post(url, {comment_id: commId, politician_id: politicianId}, function(){
-      });
+    commentId = $(this).attr('value')
+    voting("upvote", commentId)
+  });
+  $("img[alt='down_vote']").on('click', function(){
+    commentId = $(this).attr('value')
+    voting("downvote", commentId)
   });
 });
