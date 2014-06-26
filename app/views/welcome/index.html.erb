@@ -1,4 +1,8 @@
 <h1>Balls</h1>
+<% if session[:user_id]%>
+ <p> Current User: <%= User.find(session[:user_id]).username %> </p>
+<% end %>
+
 <p>something on it</p>
 
 <%= link_to "Sign in", new_session_path %>

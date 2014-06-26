@@ -3,15 +3,18 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
     @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    puts "These are your parameters: #{params_user}"
     if @user.update_attributes(params_user)
-      redirect_to root_path
+      redirect_to user_path
     else
       flash[:error] = "Something went wrong updating your profile"
       redirect_to edit_user_path(@user)
@@ -27,6 +30,11 @@ class UsersController < ApplicationController
         flash[:error] = "there was an issue creating your account."
         redirect_to new_user_path
       end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to root_path
   end
 
   private
