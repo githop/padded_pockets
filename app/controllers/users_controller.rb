@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(params_user)
       if @user.save
         session[:user_id] = @user.id
-        redirect_to edit_user_path(@user)
+        redirect_to root_path
       else
         flash[:error] = "there was an issue creating your account."
         redirect_to new_user_path
