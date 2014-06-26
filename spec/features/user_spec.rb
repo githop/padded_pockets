@@ -11,8 +11,6 @@ feature "A User" do
       expect(page).to have_content "Email"
       expect(page).to have_content "Password"
       expect(page).to have_button "Create User"
-
-
      end
   end
 
@@ -36,6 +34,7 @@ feature "A User" do
         fill_in "user_username", with: "timbo"
         fill_in "user_email", with: "test@example.com"
         click_button "Create User"
+
         expect(page).to have_content "there was an issue creating your account."
     end
   end
@@ -48,6 +47,7 @@ feature "A User" do
 
     it "visits their profile page" do
       visit user_path(@user)
+
       expect(page).to have_content "Bob-Tester"
     end
 
@@ -64,5 +64,28 @@ feature "A User" do
       expect(page).to have_content "Live in the misty mountains"
       expect(page).to have_content "Ring Lovers"
     end
+
+    it 'fails to edit their profile page' do
+      visit edit_user_path(@user)
+      fill_in "Username", with: ""
+      click_button "Update User"
+
+      expect(page).to have_content "Something went wrong updating your profile Something went wrong updating your profile"
+    end
   end
+
+  context "deletes their account" do
+
+    before do
+      @user = User.create(username: "Bob-Tester", email: "btest@example.com", password: "password", bio: "Sample Bio", party: "independent")
+    end
+
+    it "hits the delete account link" do
+      visit user_path(@user)
+      expect {
+        click_link "Delete user"
+      }.to change(User, :count).by(-1)
+
+    end
+    end
 end
