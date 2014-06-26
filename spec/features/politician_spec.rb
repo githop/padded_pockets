@@ -4,7 +4,7 @@ feature 'User browsing politician profile' do
   before(:each) do
     @poli = Politician.create(name: "Myname", id: 1)
     @comment =Comment.create(content: "here is all of my content")
-    @user = User.create(username: "scott")
+    @user = User.create(username: "scott", email: "email", password: "password")
 
     @user.comments << @comment
     @poli.comments << @comment
