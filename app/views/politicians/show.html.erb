@@ -1,1 +1,11 @@
 <%= @politician.name %>
+
+<%= render 'shared/form'%>
+
+<ul>
+<% @politician.comments.each do |comm| %>
+  <% next unless comm.persisted?%>
+  <li><%= comm.user.username %>:<br><%= comm.content %></li>
+<% end %>
+</ul>
+
