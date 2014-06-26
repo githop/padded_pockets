@@ -12,15 +12,16 @@ class CommentsController < ApplicationController
   end
 
   def upvote
-    @comment = Comment.find(params[:id])
-    @comment.liked_by current_user
-    redirect_to politician_path(@politician)
+    @comment = Comment.find(params[:comment_id])
+    @user = User.find_by_id(session[:user_id])
+    @comment.liked_by @user
+    redirect_to politician_path(params[:politician_id])
   end
 
   def downvote
-    @comment = Comment.find(params[:id])
-    @comment.downvote_from current_user
-    redirect_to politician_path(@politician)
+    @comment = Comment.find(params[:comment_id])
+    @user = User.find_by_id(session[:user_id])
+    @comment.downvote_from @user
   end
 
 

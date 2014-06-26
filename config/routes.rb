@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :users
-
+  post 'politicians/:politician_id/comments/:id/upvote' => 'comments#upvote'
+  post 'politicians/:politician_id/comments/:id/downvote' => 'comments#downvote'
   resources :politicians do
     resources :comments, only: :create
   end

@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function(){
+  $("img[alt='up_vote']").on('click', function(){
+    console.log("First bit");
+    var politicianId = window.location.pathname.slice(-1);
+    var commId = $('img').attr('value');
+    var url = "/politicians/" + politicianId + "/comments/" + commId + "/upvote"
+      $.post(url, {comment_id: commId, politician_id: politicianId}, function(){
+      });
+  });
+});

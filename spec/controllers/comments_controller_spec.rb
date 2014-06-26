@@ -13,7 +13,13 @@ feature "Comments Controller" do
   it "should have an upvote img for the comments" do
     visit politician_path(@poli)
 
-    expect(page).to have_xpath("//img[@alt='up_vote' and @src = '/images/up_vote.jpeg']")
+    expect(page).to have_xpath("//img[@alt='up_vote' and @src = '/assets/up_vote.jpeg']")
+  end
+
+  it "should have a downvote img for the comments" do
+    visit politician_path(@poli)
+
+    expect(page).to have_xpath("//img[@alt='down_vote' and @src = '/assets/down_vote.jpeg']")
   end
 
 end
