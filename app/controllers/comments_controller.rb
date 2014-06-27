@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @user = User.find_by_id(session[:user_id])
     @comment.liked_by @user
-    redirect_to politician_path(params[:politician_id])
+    render politician_path(params[:politician_id])
   end
 
   def downvote
