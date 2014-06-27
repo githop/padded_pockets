@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: padded_pockets_production
-  username: padded_pockets
   password: <%= ENV['PADDED_POCKETS_DATABASE_PASSWORD'] %>
