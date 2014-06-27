@@ -7,7 +7,9 @@
   <% next unless comm.persisted? %>
   <%# value for comm.id is actually the politician's id %>
   <img src="<%= asset_path( 'up_vote.jpeg' ) %>" value="<%=comm.id%>" alt="up_vote" class="vote" ><img src="<%= asset_path( 'down_vote.jpeg' ) %>" value="<%=comm.id%>" alt="down_vote" class="vote"><li><%= comm.user.username %>:<br><%= comm.content %></li>
-  <%= link_to 'Destroy', comment_path(comm), method: :delete %>
+  <% if comm.user_id == session[:user_id] %>
+    <%= link_to 'Delete Comment', comment_path(comm), method: :delete %>
+  <% end %>
 <% end %>
 </ul>
 
