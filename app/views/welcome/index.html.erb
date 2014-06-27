@@ -5,4 +5,10 @@
 
 <p>something on it</p>
 
-<%= link_to "Sign in", new_session_path %>
+<% if !session[:user_id]  %>
+  <%= link_to "Sign in", new_session_path %>
+  <%= link_to "Create Account", new_user_path %>
+
+<% else %>
+  <%= link_to "My Profile", user_path(session[:user_id]) %>
+<% end %>

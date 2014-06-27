@@ -1,7 +1,8 @@
 <%= @politician.name %>
 
+<% if session[:user_id] %>
 <%= render 'shared/form'%>
-
+<% end %>
 <ul>
 <% @politician.comments.each do |comm| %>
   <% next unless comm.persisted? %>
