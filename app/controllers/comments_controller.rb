@@ -12,12 +12,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    logger.info params
-    @politician = Politician.find_by_id(params[:politician_id])
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by_id(params[:id])
+    politician = @comment.politician
     @comment.destroy
 
-    redirect_to politician_path(@politician)
+    redirect_to politician_path(politician)
   end
 
   def upvote
