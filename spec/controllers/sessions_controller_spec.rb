@@ -26,3 +26,18 @@ feature "Sign in" do
   end
 
 end
+
+feature "Sign out" do
+  before do
+    @user =  User.create(username: "timbo", email: "tom@example.com", password: "password")
+  end
+
+  context "clears user's session" do
+    scenario "session data is nil" do
+      visit user_path(@user)
+      click_link "Sign out"
+      expect(page).to have_no_content(@user.username)
+    end
+  end
+
+end
