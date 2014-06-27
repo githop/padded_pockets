@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :users
   post 'politicians/:politician_id/comments/:id/upvote' => 'comments#upvote'
   post 'politicians/:politician_id/comments/:id/downvote' => 'comments#downvote'
-  delete 'politicians/:politician_id/comments/:id/delete' => 'comments#destroy'
+
+  # delete 'politicians/:politician_id/comments/:id/delete' => 'comments#destroy'
+
+  resources :comments, only: :destroy
 
   resources :politicians do
     resources :comments, only: :create

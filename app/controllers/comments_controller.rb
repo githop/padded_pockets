@@ -12,12 +12,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    logger.info params
-    @politician = Politician.find_by_id(params[:politician_id])
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by_id(params[:id])
+    politician = @comment.politician
     @comment.destroy
 
-    redirect_to politician_path(@politician)
+    redirect_to politician_path(politician)
   end
 
   def upvote
@@ -25,7 +24,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @user = User.find_by_id(session[:user_id])
     @comment.liked_by @user
-    redirect_to politician_path(params[:politician_id])
+    render politician_path(params[:politician_id])
   end
 
   def downvote
