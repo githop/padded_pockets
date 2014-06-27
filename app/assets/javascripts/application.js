@@ -20,6 +20,10 @@ function voting(type,commentId) {
   $.post(url, {comment_id: commentId, politician_id: politicianId}, function(){});
 }
 
+function updateVote() {
+  
+}
+
 $(document).ready(function(){
   var commentId;
   $("img[alt='up_vote']").on('click', function(){

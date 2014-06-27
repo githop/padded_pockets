@@ -1,0 +1,60 @@
+ul {
+	list-style-type: none;
+}
+
+.comment-numbers {
+	float: left;
+	margin-left: .5em;
+	margin-top: 15px;
+}
+
+.form {
+	margin-left: 40px;
+}
+
+li {
+	position: relative;
+	width: 33%;
+	border: 1px solid black;
+	margin: .5em;
+	margin-left: 0;
+}
+
+.vote {	
+	width: 15px;
+}
+
+.vote-col {
+	float: left;
+	width: 20px;
+	margin: 7px;
+	text-align: center;
+
+}
+
+
+.parent-flex {
+	display: flex;
+	justify-content: space-around;
+}
+
+.child-flex {
+	margin: 7px;
+}
+
+
+.ul {
+	width: 33%;
+}
+
+.comment-content {
+	text-align: center;
+	margin: 7.5px auto;
+	width: 66%
+}
+
+
+
+
+
+

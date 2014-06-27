@@ -1,12 +1,33 @@
 <%= @politician.name %>
 
-<%= render 'shared/form'%>
+<div class="form"><%= render 'shared/form'%></div>
 
 <ul>
-<% @politician.comments.each do |comm| %>
+<% @politician.comments.each_with_index do |comm,index| %>
   <% next unless comm.persisted? %>
-  <%# value for comm.id is actually the politician's id %>
-  <img src="<%= asset_path( 'up_vote.jpeg' ) %>" value="<%=comm.id%>" alt="up_vote" class="vote" ><img src="<%= asset_path( 'down_vote.jpeg' ) %>" value="<%=comm.id%>" alt="down_vote" class="vote"><li><%= comm.user.username %>:<br><%= comm.content %></li>
+  <div class="comments">
+  <li>
+  	<div class="comment-numbers"><%= index + 1 %>.</div>
+	  <div class="vote-col">
+	  	<img src="<%= asset_path('up_vote.jpeg') %>" value="<%=comm.id%>" alt="up_vote" class="vote" >
+	  	<img src="<%= asset_path('down_vote.jpeg') %>" value="<%=comm.id%>" alt="down_vote" class="vote">
+	  </div>
+	  <div class="parent-flex">
+	  	<div class="child-flex">
+		  	<%= comm.user.username %>
+		  </div>
+		  <div class="votecount child-flex"><%= comm.votes_for.up.count - comm.votes_for.down.count %> points  
+		  </div>
+		  <div class="child-flex">
+				<%= ((Time.now - comm.created_at)/3600).round%> hours ago
+		  </div>
+		</div>
+	  <br>
+	  <div class="comment-content child-flex">
+	  	<%= comm.content %>
+		</div>
+	</li>
+	<div>
 <% end %>
 </ul>
 
