@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 function voting(type,commentId) {
   var politicianId = window.location.pathname.slice(-1);
@@ -29,5 +28,16 @@ $(document).ready(function(){
   $("img[alt='down_vote']").on('click', function(){
     commentId = $(this).attr('value')
     voting("downvote", commentId)
+  });
+ $('#post_state_id').on("change", function(){
+    $("#peoples").empty();
+    var stateSelection = $('#post_state_id').val();
+    console.log(stateSelection)
+    $.post('/congress_by_state', {state: stateSelection}, function(p){
+      console.log (p[0].id)
+      for (var i in p) {
+      $("#peoples").append("<li><a href=/politicians/" + p[i].id +  ">" + p[i].first_name + " " + p[i].last_name + ": " + p[i].title + " - " + p[i].party + "</a></li>");
+    }})
+
   });
 });
