@@ -3,7 +3,9 @@ class WelcomeController < ApplicationController
     @politicians = Politician.all
   end
 
-  def congress_by_state(state)
-    Politician.where(state: state)
+  def congress_by_state
+    respond_to do |format|
+      format.json {render json: Politician.where(state: params[:state]).to_json }
+    end
   end
 end

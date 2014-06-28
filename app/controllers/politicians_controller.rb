@@ -5,5 +5,6 @@ class PoliticiansController < ApplicationController
     if @politician.contributions.empty?
       @politician.fetch_donations
     end
+    politician_path(@politician)
   end
 end
