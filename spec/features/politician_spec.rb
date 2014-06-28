@@ -13,7 +13,7 @@ feature 'User browsing politician profile' do
   it "sees politician name" do
     visit politician_path(@poli)
 
-    expect(page).to have_content(@poli.name)
+    expect(page).to have_content(@poli.first_name)
   end
 
   it "should have comments printed out" do
