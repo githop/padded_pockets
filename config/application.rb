@@ -11,10 +11,16 @@ require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
+
+#open secrets global var for making the api calls.
+
+
 Bundler.require(*Rails.groups)
 
 module PaddedPockets
   class Application < Rails::Application
+
+    $cand = OpenSecrets::Candidate.new('e4b0d1eafb75fb52fca3d9d3a0ded8d5')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
