@@ -56,4 +56,8 @@ module WelcomeHelper
     ]
   end
 
+  def congress_by_state
+
+  end
+
 end
