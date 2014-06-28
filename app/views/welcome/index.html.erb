@@ -1,8 +1,24 @@
-<h1>Balls</h1>
+<h1>Padded Pockets</h1>
 <% if session[:user_id]%>
  <p> Current User: <%= User.find(session[:user_id]).username %> </p>
 <% end %>
 
-<p>something on it</p>
+<h1>Select a State to view those Senators:</h1>
 
-<%= link_to "Sign in", new_session_path %>
+<%=select("post", "state_id", us_states, { include_blank: true})%>
+
+
+
+
+
+<% if !session[:user_id]  %>
+
+  <%= link_to "Sign in", new_session_path %>
+  <%= link_to "Create Account", new_user_path %>
+
+<% else %>
+
+  <%= link_to "My Profile", user_path(session[:user_id]) %>
+<% end %>
+
+<ol id="peoples"></ol>

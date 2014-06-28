@@ -6,12 +6,12 @@ feature "Sign in" do
   end
 
   context "with valid credentials" do
-    scenario "signs me in " do
+    scenario "signs me in" do
       visit '/sessions/new'
       fill_in 'user_email', with: @user.email
       fill_in 'user_password', with: @user.password
       click_on "Sign in"
-      expect(page).to have_content("Balls")
+      expect(page).to have_content("Padded Pockets")
     end
   end
 

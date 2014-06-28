@@ -24,7 +24,7 @@ feature "A User" do
         click_button "Create User"
       }.to change(User, :count).by(1)
 
-      expect(page).to have_content "Balls"
+      expect(page).to have_content "Padded Pockets"
     end
 
     it "fails to create a user account" do

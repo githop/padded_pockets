@@ -1,5 +1,4 @@
 #Padded Pockets
-==============
 
 ##OVERVIEW
 
@@ -12,6 +11,7 @@ This app shows the contributors and contribution amounts for a selected Senator.
 1. Rails
 2. Capybara
 3. rspec
+
 
 
 The MIT License (MIT)
