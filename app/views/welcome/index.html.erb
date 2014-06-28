@@ -5,14 +5,11 @@
 
 <h1>Select a State to view those Senators:</h1>
 
-<%=select("post", "state_id", us_states, { include_blank: true })%>
-<%=select("post", "congress_id", us_states, { include_blank: true },{disabled: true})%>
+<%=select("post", "state_id", us_states, { include_blank: true})%>
 
-<script>
-  $('#post_state_id').on("change", function(){
-    $('congress_id').removeAttr("disabled");
-  })
-</script>
+
+
+
 
 <% if !session[:user_id]  %>
 
