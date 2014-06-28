@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User browsing politician profile' do
   before(:each) do
-    @poli = Politician.create(first_name: "Myname", id: 1)
+    @poli = Politician.create(first_name: "Myname", id: 1, opensecrets_id: "N00003028")
     @comment =Comment.create(content: "here is all of my content")
     @user = User.create(username: "scott", email: "email@email.com", password: "password")
 

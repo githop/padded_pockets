@@ -3,6 +3,9 @@ class Politician < ActiveRecord::Base
   has_many :contributions
 
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   def fetch_donations
     candidate = $cand.contributors({cid: self.opensecrets_id})['response']['contributors']['contributor']
@@ -16,9 +19,9 @@ class Politician < ActiveRecord::Base
     data = self.contributions
     chart_headers = [["Organization", "Total"]]
     data.each do |contrib|
-      chart_headers << [contrib.org_name.to_s, contrib.total]
+      chart_headers << ["#{contrib.org_name}", contrib.total]
     end
-    chart_headers
+    chart_headers.to_json
   end
 
 

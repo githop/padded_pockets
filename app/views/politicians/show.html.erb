@@ -1,5 +1,27 @@
-<%= @politician.first_name %>
 
+<h1> <%= @politician.full_name %> </h1>
+<h3> <%= @politician.party %> </h3>
+<img src='<%=@politician.image%>' width="125px">
+
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var choiceArray = <%=raw @politician.get_chart_data %>
+    var data = google.visualization.arrayToDataTable(choiceArray);
+
+    var options = {
+      is3D: true,
+      backgroundColor: 'none',
+      chartArea: { left:20,top:0,width:'75%', height:'95%'},
+      fontName: "Helvetica"
+  };
+
+    var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+    chart.draw(data, options);
+}
+</script>
+<div id="piechart"></div>
 <% if session[:user_id] %>
 <%= render 'shared/form'%>
 <% end %>
