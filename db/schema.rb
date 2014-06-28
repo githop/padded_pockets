@@ -25,7 +25,23 @@ ActiveRecord::Schema.define(version: 20140625233122) do
   end
 
   create_table "politicians", force: true do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "birthday"
+    t.string   "gender"
+    t.string   "state"
+    t.string   "bioguide_id"
+    t.string   "opensecrets_id"
+    t.string   "party"
+    t.string   "image"
+    t.string   "title"
+    t.string   "url"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "contact_form"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "facebook_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
