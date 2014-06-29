@@ -13,10 +13,16 @@
  *= require_tree .
  *= require_self
  */
-.container {
-  margin: 20px auto;
-  width: 66%;
-  padding: 0px 20px 20px 20px;
-  border: 1px solid black;
-  border-radius: 5px;
+
+#piechart {
+  width: 100%;
+  height: 100%;
+}
+
+.vote {
+  width: 25px;
+}
+
+.panel-heading {
+  background-color: #AC0000; 
 }

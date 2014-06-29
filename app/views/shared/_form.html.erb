@@ -1,9 +1,9 @@
-<%= form_for ([@politician, @politician.comments.build]) do |f| %>
+<%= form_for ([@politician, @politician.comments.build]), role: "form" do |f| %>
+  <div class="form-group">
+    <%= f.label :comment %><br>
+    <%= f.text_area :content, class: "form-control"%>
+  </div>
   <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </p>
-  <p>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", class: "btn btn-default" %>
   </p>
  <% end %>

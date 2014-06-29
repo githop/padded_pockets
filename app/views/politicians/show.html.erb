@@ -1,62 +1,72 @@
 <div class='container-fluid'>
   <div class='panel panel-default'> 
     <div class='panel-heading' >
-      <h2> <%= @politician.full_name %> </h2>
+      <h2><small><%=@politician.title%></small> <%= @politician.full_name %> </h2>
+      <%=link_to "return", root_path%>
     </div>
     <div class='panel-body'>
       <div class='row'>
-	<div class="col-md-3">
-	  <img src='<%=@politician.image%>' width="125px" class='img-responsive img-rounded'>
+	<div class="col-md-3 col-xs-12">
+	  <img src='<%=@politician.image%>' class='img-responsive img-rounded'>
 	</div>
-	<div class='col-md-5'>
-	  <div class='list-group'>
-	    <a href='#' class='list-group-item'>
-	      <h4 class='list-group-item-heading'>State</h4>
-	      <p class='list-group-item-text'><%=@politician.state%></p>
-	    </a>
-	    <a hrer-'#' class='list-group-item'><%= @politician.party %><a>	
-	      </div>
-	    </div>
-	    <div class='col-md-4'>
-	      <div class='list-group'>
-		<a class='list-group-item'>
-		  <h3 class='list-group-heading'>Twitter </h3>
-		</a>
-	      </div>
-	    </div>
-	  </div>
+	<div class='col-md-7 col-xs-12'>
+	  <dl>
+	    <dt>State</dt>
+	    <dd><%=@politician.state%></dd>
+	    <dt>Party</dt>
+	    <dd><%=@politician.party%></dd>
+	    <dt>contact<dt>
+	    <dd><a href='<%=@politician.contact_form%>'>tap here</a><dd>
+	    <dt>twitter handle</dt>
+	    <dd>@<%=@politician.twitter%></dd>
+	    <dt>Address</dt>
+	    <dd><%=@politician.address%></dt>
+	  </dl>
 	</div>
       </div>
-      <script type="text/javascript">
+    </div>
+  </div>
+  <script type="text/javascript">
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
+
+$(window).resize(function() {
+    drawChart(); 
+    });
+
 function drawChart() {
   var choiceArray = <%=raw @politician.get_chart_data %>
   var data = google.visualization.arrayToDataTable(choiceArray);
 
   var options = {
-is3D: true,
-      backgroundColor: 'none',
-      chartArea: { left:20,top:0,width:'75%', height:'95%'},
-      fontName: "Helvetica"
+width: '100%',
+       height: '100%',
+       backgroundColor: 'none',
+       fontName: "Helvetica",
+       chartArea: {
+left:0, top:5, width:'100%', height:'100%'
+       }
   };
 
   var chart = new google.visualization.PieChart(document.getElementById("piechart"));
   chart.draw(data, options);
 }
-      </script>
-      <div id="piechart" class="well" ></div>
-      <% if session[:user_id] %>
-	<%= render 'shared/form'%>
-    <% end %>
-      <ul>
-	<% @politician.comments.each do |comm| %>
-	  <% next unless comm.persisted? %>
-	<%# value for comm.id is actually the politician's id %>
-	<img src="<%= asset_path( 'up_vote.jpeg' ) %>" value="<%=comm.id%>" alt="up_vote" class="vote" ><img src="<%= asset_path( 'down_vote.jpeg' ) %>" value="<%=comm.id%>" alt="down_vote" class="vote"><li><%= comm.user.username %>:<br><%= comm.content %></li>
-	<% if comm.user_id == session[:user_id] %>
-	  <%= link_to 'Delete Comment', comment_path(comm), method: :delete %>
-      <% end %>
-      <% end %>
-      </ul>
+  </script>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div id="piechart" class="well"></div>
     </div>
+  </div>
+  <% if session[:user_id] %>
+    <%= render 'shared/form'%>
+<% end %>
+  <ul>
+    <% @politician.comments.each do |comm| %>
+      <% next unless comm.persisted? %>
+    <img src="<%= asset_path( 'up_vote.jpeg' ) %>" value="<%=comm.id%>" alt="up_vote" class="vote" ><img src="<%= asset_path( 'down_vote.jpeg' ) %>" value="<%=comm.id%>" alt="down_vote" class="vote"><li><%= comm.user.username %>:<br><%= comm.content %></li>
+    <% if comm.user_id == session[:user_id] %>
+      <%= link_to 'Delete Comment', comment_path(comm), method: :delete %>
+  <% end %>
+  <% end %>
+  </ul>
+</div>
