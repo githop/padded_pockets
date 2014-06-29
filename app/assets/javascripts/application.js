@@ -16,11 +16,13 @@
 function voting(type,commentId) {
   var politicianId = window.location.pathname.slice(-1);
   var url = "/politicians/" + politicianId + "/comments/" + commentId + "/" + type;
-  $.post(url, {comment_id: commentId, politician_id: politicianId}, function(){});
+  $.post(url, {comment_id: commentId, politician_id: politicianId}, function(result){
+    $('.'+commentId).replaceWith("<div class='votecount child-flex'>" + (result.vote_up - result.vote_down) +  " points</div>")
+  }, "JSON");
 }
 
 function updateVote() {
-  
+
 }
 
 $(document).ready(function(){
@@ -33,6 +35,7 @@ $(document).ready(function(){
     commentId = $(this).attr('value')
     voting("downvote", commentId)
   });
+
  $('#post_state_id').on("change", function(){
     $("#peoples").empty();
     var stateSelection = $('#post_state_id').val();

@@ -20,18 +20,27 @@ class CommentsController < ApplicationController
   end
 
   def upvote
-    logger.info params[:comment_id]
-    @comment = Comment.find(params[:comment_id])
     @user = User.find_by_id(session[:user_id])
-    @comment.liked_by @user
-    render politician_path(params[:politician_id])
+    respond_to do |format|
+      @comment = Comment.find(params[:comment_id])
+      @comment.liked_by @user
+      votes_up = @comment.votes_for.up.count
+      votes_down = @comment.votes_for.down.count
+      format.json { render json: {vote_up: votes_up,vote_down: votes_down}}
+    end
+
   end
 
   def downvote
-    @comment = Comment.find(params[:comment_id])
     @user = User.find_by_id(session[:user_id])
-    @comment.downvote_from @user
-    redirect_to politician_path(params[:politician_id])
+    respond_to do |format|
+      @comment = Comment.find(params[:comment_id])
+      @comment.downvote_from @user
+      votes_up = @comment.votes_for.up.count
+      votes_down = @comment.votes_for.down.count
+      format.json { render json: {vote_up: votes_up,vote_down: votes_down}}
+    end
+
   end
 
 
