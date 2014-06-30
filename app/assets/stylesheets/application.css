@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+#piechart {
+  width: 100%;
+  height: 100%;
+}
+
+.vote {
+  width: 25px;
+}
+
+.panel-heading {
+  background-color: #AC0000; 
+}
