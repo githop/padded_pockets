@@ -14,7 +14,6 @@ This app shows the contributors and contribution amounts for a selected Senator.
 2. Capybara
 3. rspec
 
-## SHUT UP
 
 The MIT License (MIT)
 
